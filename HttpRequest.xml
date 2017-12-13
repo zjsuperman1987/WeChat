@@ -1,0 +1,855 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+  <sqlstrings>
+
+    <!--获取会员信息-->
+    <sql id="GetMemberInfo">
+      <![CDATA[ 
+      SELECT  a.MemberGUID ,
+              a.BUGUID ,
+              a.ProjGUID ,
+              a.MemberName ,
+              a.NickName ,
+              a.headimgurl ,
+              ISNULL(a.MobilePhone,'') AS MobilePhone , 
+              ISNULL(CONVERT(VARCHAR(10), a.Birthday , 120),'') AS Birthday ,
+              a.Gender ,
+              a.Address ,
+              a.Score ,
+              ISNULL(b.LevelName,'') AS LevelName ,
+              ISNULL(b.Level,'') AS Level ,
+              a.LjAmount ,
+              a.LjCount ,
+              ISNULL(a.IDCard,'') AS IDCard ,
+              ISNULL(a.DriverType,'') AS DriverType
+      FROM    c_Member a
+              LEFT JOIN dbo.c_MemberLevel b ON a.Level = b.Level 
+                                              AND a.BUGUID = b.BUGUID
+      WHERE   MemberGUID = '{0}' 
+      ]]>
+    </sql>
+
+    <!--获取会员兑换记录-->
+    <sql id="GetMemberConvertGrid">
+      <![CDATA[ 
+      SELECT  b.RowGUID ,
+              a.MerchandiseName ,
+              b.MerchandiseMxCode ,
+              a.MerchandiseType ,
+              b.Score ,
+              d.LevelName AS Level ,
+              CONVERT(VARCHAR(16), b.AgentDate, 120) AS AgentDate ,
+              c.Location + '/' + c.FileName AS Url
+      FROM    c_Merchandise a
+              INNER JOIN c_MerchandiseMx b ON b.MerchandiseGUID = a.MerchandiseGUID
+              LEFT JOIN dbo.c_Documents c ON a.MerchandiseGUID = c.RelationGUID
+              LEFT JOIN dbo.c_MemberLevel d ON a.Level = d.Level
+                                              AND a.BUGUID = d.BUGUID
+      WHERE   b.MemberGUID = '{0}'
+      ORDER BY MerchandiseCode   
+      ]]>
+    </sql>
+    
+
+    <!--获取车辆列表-->
+    <sql id="GetCarGrid">
+      <![CDATA[ 
+      SELECT  a.CarGUID ,
+              a.CarNo ,
+              a.CarBrand ,
+              a.CarModel ,
+              a.CarType ,
+              CONVERT(VARCHAR(10), a.BuyDate, 120) AS BuyDate , 
+              CONVERT(VARCHAR(50), a.BuyPrice, 1) AS BuyPrice ,
+              CONVERT(VARCHAR(50), a.TravelNumber, 1) AS TravelNumber ,
+              a.FrameNo ,
+              a.InsureCmp ,
+              CONVERT(VARCHAR(10), a.InsureEndDate, 120) AS InsureEndDate ,
+              ISNULL(CONVERT(VARCHAR(10), a.LastKeepDate, 120),'') AS LastKeepDate ,
+              a.IsUsed, 
+              c.Location + '/' + c.FileName AS Url
+      FROM    dbo.c_Car a
+		          LEFT JOIN dbo.c_CarBrand b ON a.CarBrand=b.CarBrandName
+              LEFT JOIN dbo.c_Documents c ON b.CarBrandGUID = c.RelationGUID
+      WHERE   a.MemberGUID = '{0}' 
+      ORDER BY a.BuyDate DESC      
+      ]]>
+    </sql>
+
+    <!--获取车辆品牌列表-->
+    <sql id="GetCarBrandGrid">
+      <![CDATA[ 
+      SELECT  CarBrandGUID ,
+              CarBrandName ,
+              CarBrandName
+      FROM    dbo.c_CarBrand
+      ORDER BY CarBrandCode   
+      ]]>
+    </sql>
+    
+
+    <!--获取车辆信息-->
+    <sql id="GetCarInfo">
+      <![CDATA[ 
+      SELECT  a.CarGUID ,
+              a.CarNo ,
+              a.CarBrand ,
+              a.CarModel ,
+              a.CarType ,
+              CONVERT(VARCHAR(10), a.BuyDate, 120) AS BuyDate , 
+              CONVERT(VARCHAR(50), a.BuyPrice, 1) AS BuyPrice ,
+              CONVERT(VARCHAR(50), a.TravelNumber, 1) AS TravelNumber ,
+              a.FrameNo ,
+              a.InsureCmp ,
+              CONVERT(VARCHAR(10), a.InsureEndDate, 120) AS InsureEndDate ,
+              ISNULL(CONVERT(VARCHAR(10), a.LastKeepDate, 120),'') AS LastKeepDate , 
+              c.Location + '/' + c.FileName AS Url
+      FROM    dbo.c_Car a
+		          LEFT JOIN dbo.c_CarBrand b ON a.CarBrand=b.CarBrandName
+              LEFT JOIN dbo.c_Documents c ON b.CarBrandGUID = c.RelationGUID
+      WHERE   CarGUID = '{0}'      
+      ]]>
+    </sql>
+
+    <!--获取订单列表-->
+    <sql id="GetOrderGrid">
+      <![CDATA[ 
+      SELECT  OrderGUID ,
+              OrderCode ,
+              OrderType ,
+              OrderStatus , 
+              CONVERT(VARCHAR(50), ISNULL(OrderAmount,'0.00'), 1) AS OrderAmount,
+              CONVERT(VARCHAR(16), CreateDate, 120) AS CreateDate,
+              ISNULL(AcceptBy,'') AS AcceptBy,
+              IsOrderChange
+      FROM    dbo.c_Order
+      WHERE   MemberGUID = '{0}'
+      ORDER BY CreateDate DESC      
+      ]]>
+    </sql>
+
+    <!--业务参数：保养类型-->
+    <sql id="GetKeepType">
+      <![CDATA[ 
+      SELECT  KeepTypeName
+      FROM    c_KeepType
+      WHERE   BUGUID = '{0}'
+      ORDER BY KeepTypeCode     
+      ]]>
+    </sql>
+
+    <!--业务参数：保养明细-->
+    <sql id="GetKeepTypeMx">
+      <![CDATA[ 
+      SELECT  KeepName ,
+              IsDefault
+      FROM    dbo.c_KeepTypeMx a
+              INNER JOIN dbo.c_KeepType b ON b.KeepTypeGUID = a.KeepTypeGUID
+      WHERE   b.BUGUID = '{0}'
+              AND b.KeepTypeName = '{1}'
+      ORDER BY KeepCode   
+      ]]>
+    </sql>
+
+    <!--业务参数：维修类型-->
+    <sql id="GetRepairType">
+      <![CDATA[ 
+      SELECT  OptionName AS RepairType
+      FROM    dbo.pub_ParameOption
+      WHERE   BUGUID = '{0}'
+              AND ParameCode = 'RepairType'
+      ORDER BY OptionCode    
+      ]]>
+    </sql>
+
+    <!--项目配置：抢险设置-->
+    <sql id="GetRescueSet">
+      <![CDATA[ 
+      SELECT  LocationCode ,
+              Adress  ,
+              CONVERT(VARCHAR(50), RescueFee, 1) AS RescueFee ,
+              RescueBgnData ,
+              CONVERT(VARCHAR(50), RescuePrice, 1) AS RescuePrice ,
+              RescuePhone
+      FROM    pub_ProjectConfig
+      WHERE   ProjGUID = '{0}' 
+      ]]>
+    </sql>
+
+    <!--业务参数：保险公司-->
+    <sql id="GetInsureCmp">
+      <![CDATA[ 
+      SELECT  OptionName AS InsureCmp
+      FROM    dbo.pub_ParameOption
+      WHERE   BUGUID = '{0}'
+              AND ParameCode = 'InsureCmp'
+      ORDER BY OptionCode  
+      ]]>
+    </sql>
+
+    <!--业务参数：过户进程-->
+    <sql id="GetRegisterProcess">
+      <![CDATA[ 
+      SELECT  OptionName AS ProcessName ,
+              '' AS AgentStatus  
+      FROM    dbo.pub_ParameOption
+      WHERE   BUGUID = '{0}'
+              AND ParameCode = 'RegisterStatus'
+      ORDER BY OptionCode 
+      ]]>
+    </sql>
+
+
+    <!--业务参数：险种类型-->
+    <sql id="GetInsureType">
+      <![CDATA[ 
+      SELECT    a.InsureTypeName ,
+                a.InsureTypeClass ,
+                a.InsureTypeCode ,
+                a.IsNotAccount ,
+                ISNULL(( SELECT STUFF(( SELECT  ';' + CONVERT(VARCHAR(50), Amount, 1)
+                                    FROM    c_InsurePrice
+                                    WHERE   InsureTypeGUID = a.InsureTypeGUID
+                                    ORDER BY Amount
+                                  FOR
+                                    XML PATH('')
+                                  ), 1, 1, '')
+                ),'') AS AmountArr
+      FROM      c_InsureType a
+                INNER JOIN pub_ParameOption b ON b.BUGUID = a.BUGUID
+                                                 AND a.InsureCmpName = b.OptionName
+                                                 AND b.ParameCode = 'InsureCmp'
+                                                 AND b.OptionName = '{1}'
+      WHERE     a.BUGUID = '{0}'
+      ORDER BY  InsureTypeCode
+      ]]>
+    </sql>
+
+    <!--订单：订单信息-->
+    <sql id="GetOrderInfo">
+      <![CDATA[ 
+      SELECT  OrderGUID ,
+              BUGUID ,
+              ProjGUID ,
+              MemberGUID ,
+              CarGUID ,
+              OrderCode ,
+              OrderStatus ,
+              OrderType ,
+              CreateBy ,
+              CONVERT(VARCHAR(16), CreateDate, 120) AS CreateDate ,
+              IsOnLine ,
+              AcceptGUID ,
+              ISNULL(AcceptBy,'') AS AcceptBy ,
+              ISNULL(CONVERT(VARCHAR(16), AcceptDate, 120),'') AS AcceptDate ,
+              CONVERT(VARCHAR(16), PayDate, 120) AS PayDate ,
+              PayType ,
+              CONVERT(VARCHAR(16), CompleteDate, 120) AS CompleteDate ,
+              ISNULL(CONVERT(VARCHAR(50), OrderAmount, 1),'0.00') AS OrderAmount ,
+              ServiceType ,
+              CONVERT(VARCHAR(16), AppointDate, 120) AS AppointDate ,
+              KeepTypeName ,
+              RepairType ,
+              InsureCmp ,
+              CONVERT(VARCHAR(16), InsureEndDate, 120) AS InsureEndDate ,
+              RegisterType ,
+              ISNULL(RegisterStatus,'已下单') AS RegisterStatus ,
+              RescueLocation ,
+              RescueAddress , 
+              ISNULL(CONVERT(VARCHAR(50), RescueKm, 1),'0.00') AS RescueKm ,
+              ISNULL(AssessContent,'') AS AssessContent ,
+              IsSaleCar ,
+              Score ,
+              Remark
+      FROM    c_Order
+      WHERE   OrderGUID = '{0}'  
+      ]]>
+    </sql>
+
+    <!--订单：上传资料列表-->
+    <sql id="GetOrderPaperGrid">
+      <![CDATA[
+      SELECT    Location + '/' + FileName AS Url ,
+                RelationType
+      FROM      dbo.c_Documents
+      WHERE     RelationGUID = '{0}'
+      ORDER BY CreateDate	     
+      ]]>
+    </sql>
+    
+    <!--订单：费用列表-->
+    <sql id="GetOrderFeeGrid">
+      <![CDATA[
+      SELECT  FeeGUID , 
+              FeeTypeName ,
+              ISNULL(FeeTypeClass,'') AS FeeTypeClass , 
+              StockGUID ,
+              StockName , 
+              CONVERT(VARCHAR(50), OldAmount, 1) AS OldAmount ,
+              CASE WHEN IsDiscount = 1 THEN '是'
+                   ELSE '否'
+              END AS IsDiscount ,
+              ISNULL(CONVERT(VARCHAR(50), Amount, 1),'0.00') AS Amount ,
+              Remark
+      FROM    c_Fee  
+      WHERE   OrderGUID = '{0}' 
+      ORDER BY FeeTypeClass,FeeTypeName        
+      ]]>
+    </sql>
+
+    <!--订单：保养项列表-->
+    <sql id="GetOrderKeepGrid">
+      <![CDATA[
+      SELECT  RowGUID ,
+              OrderGUID ,
+              KeepName , 
+              StockGUID ,
+              StockName ,
+              CONVERT(VARCHAR(50), Price, 1) AS Price ,
+              CASE WHEN IsDiscount = 1 THEN '是'
+                   ELSE '否'
+              END AS IsDiscount ,
+              CONVERT(VARCHAR(50), DiscountPrice, 1) AS DiscountPrice ,
+              Count ,
+              CONVERT(VARCHAR(50), Amount, 1) AS Amount ,
+              Remark
+      FROM    c_Order_Keep  
+      WHERE   OrderGUID = '{0}' 
+      ORDER BY KeepName          
+      ]]>
+    </sql>
+
+    <!--订单：维修项列表-->
+    <sql id="GetOrderRepairGrid">
+      <![CDATA[
+      SELECT  RowGUID ,
+              OrderGUID ,
+              RepairName ,  
+              StockGUID ,
+              StockName ,
+              CONVERT(VARCHAR(50), Price, 1) AS Price ,
+              CASE WHEN IsDiscount = 1 THEN '是'
+                   ELSE '否'
+              END AS IsDiscount ,
+              CONVERT(VARCHAR(50), DiscountPrice, 1) AS DiscountPrice ,
+              Count ,
+              CONVERT(VARCHAR(50), Amount, 1) AS Amount ,
+              Remark
+      FROM    c_Order_Repair  
+      WHERE   OrderGUID = '{0}' 
+      ORDER BY RepairName          
+      ]]>
+    </sql>
+
+    <!--订单：保险明细列表-->
+    <sql id="GetOrderInsureGrid">
+      <![CDATA[
+      SELECT  RowGUID ,
+              OrderGUID ,
+              InsureTypeName ,
+              InsureTypeCode , 
+              InsureTypeClass , 
+              CONVERT(VARCHAR(50), Amount, 1) AS Amount ,
+              CONVERT(VARCHAR(10), InsureEndDate, 120) AS InsureEndDate ,
+              Remark
+      FROM    c_Order_Insure  
+      WHERE   OrderGUID = '{0}' 
+      ORDER BY InsureTypeCode          
+      ]]>
+    </sql>
+
+    <!--订单：过户状态列表-->
+    <sql id="GetOrderRegister">
+      <![CDATA[
+      SELECT  ProcessName , 
+              ISNULL(AgentStatus,'') AS AgentStatus ,
+              ISNULL(CONVERT(VARCHAR(10), AgentDate, 120),'') AS AgentDate
+      FROM    c_Order_Register  
+      WHERE   OrderGUID = '{0}' 
+      ORDER BY ProcessCode          
+      ]]>
+    </sql>
+
+    <!--支付订单-->
+    <sql id="PayOrder">
+      <![CDATA[ 
+      INSERT  INTO dbo.c_Bill
+              ( BillGUID ,
+                ProjGUID ,
+                BUGUID ,
+                OrderGUID ,
+                PaidBy ,
+                PaidDate ,
+                BillAmount ,
+                BillType ,
+                PayType ,
+                CreateBy ,
+                CreateDate ,
+                ApproveStatus ,
+                Remark
+              )
+              SELECT  '{1}' ,
+                      ProjGUID ,
+                      BUGUID ,
+                      OrderGUID ,
+                      CreateBy AS PaidBy ,
+                      GETDATE() AS PaidDate ,
+                      OrderAmount AS BillAmount ,
+                      '收款单' ,
+                      '{2}' ,
+                      CreateBy ,
+                      GETDATE() AS CreateDate ,
+                      '待审核' ,
+                      ''
+              FROM    dbo.c_Order
+              WHERE   OrderGUID = '{0}'
+        
+      INSERT  INTO dbo.c_Paid
+              ( PaidGUID ,
+                BillGUID ,
+                ProjGUID ,
+                BUGUID ,
+                OrderGUID ,
+                FeeGUID ,
+                FeeTypeName ,
+                FeeTypeClass ,
+                Amount ,
+                FlowWay ,
+                CreateDate ,
+                AttributeYear ,
+                AttributeMonth ,
+                AttributeYearMonth ,
+                Remark
+              )
+              SELECT  NEWID() ,
+                      '{1}' ,
+                      ProjGUID ,
+                      BUGUID ,
+                      OrderGUID ,
+                      FeeGUID ,
+                      FeeTypeName ,
+                      FeeTypeClass ,
+                      Amount ,
+                      '' ,
+                      GETDATE() ,
+                      YEAR(GETDATE()) ,
+                      MONTH(GETDATE()) ,
+                      CONVERT(VARCHAR(7), GETDATE(), 120) ,
+                      Remark
+              FROM    dbo.c_Fee
+              WHERE   OrderGUID = '{0}'  
+      ]]>
+    </sql>
+
+
+    <!--获取问题列表-->
+    <sql id="GetQuestionGrid">
+      <![CDATA[ 
+      SELECT    a.QuestionGUID ,
+                a.QuestionName ,
+                a.QuestionContent ,
+                a.CreateBy ,
+                CONVERT(VARCHAR(16), a.CreateDate, 120) AS CreateDate ,
+                ISNULL(b.ReplyCount, 0) AS ReplyCount ,
+                ISNULL(CONVERT(VARCHAR(20), b.LastReplyTime, 120), '') AS LastReplyTime ,
+                ISNULL(c.ReplayContent, '') AS ReplayContent
+      FROM      dbo.c_Question a
+                LEFT JOIN ( SELECT  QuestionGUID ,
+                                    COUNT(*) AS ReplyCount ,
+                                    MAX(CreateDate) AS LastReplyTime
+                            FROM    c_Reply
+                            WHERE   Role <> '提问人'
+                                    AND ProjGUID = '{0}'
+                            GROUP BY QuestionGUID
+                          ) b ON b.QuestionGUID = a.QuestionGUID
+                LEFT JOIN ( SELECT  QuestionGUID ,
+                                    ReplyGUID ,
+                                    Content AS ReplayContent ,
+                                    ROW_NUMBER() OVER ( PARTITION BY QuestionGUID ORDER BY Up DESC ) AS ROW
+                            FROM    ( SELECT    a.QuestionGUID ,
+                                                a.ReplyGUID ,
+                                                a.Content ,
+                                                COUNT(DISTINCT b.RowGUID) AS Up
+                                      FROM      c_Reply a
+                                                LEFT JOIN dbo.c_ClickLog b ON b.ReplyGUID = a.ReplyGUID
+                                                              AND b.Type = '顶'
+                                      WHERE     a.Role = '回复人'
+                                                AND a.ProjGUID = '{0}'
+                                      GROUP BY  a.QuestionGUID ,
+                                                a.ReplyGUID ,
+                                                a.Content
+                                    ) a
+                          ) c ON c.QuestionGUID = a.QuestionGUID
+                                 AND c.Row = 1
+      WHERE     ProjGUID = '{0}'
+      ORDER BY  CreateDate DESC    
+      ]]>
+    </sql>
+
+    <!--发布问题-->
+    <sql id="SaveQuestion">
+      <![CDATA[  
+      INSERT  INTO dbo.c_Question
+              ( QuestionGUID ,
+                ProjGUID ,
+                BUGUID ,
+                QuestionName ,
+                QuestionContent ,
+                CreateBy ,
+                CreateDate ,
+                CreateByGUID
+              )
+              SELECT  NEWID() ,
+                      ProjGUID ,
+                      BUGUID ,
+                      '' ,
+                      '{1}' ,
+                      MemberName ,
+                      GETDATE() ,
+                      MemberGUID
+              FROM    dbo.c_Member
+              WHERE   MemberGUID = '{0}'
+      ]]>
+    </sql>
+
+    <!--获取问题详情-->
+    <sql id="GetQuestionInfo">
+      <![CDATA[  
+      SELECT  a.QuestionGUID ,
+              a.QuestionName ,
+              a.QuestionContent ,
+              a.CreateBy ,
+              a.CreateByGUID ,
+              CONVERT(VARCHAR(16), a.CreateDate, 120) AS CreateDate,
+              b.headimgurl
+      FROM    dbo.c_Question a
+              LEFT JOIN dbo.c_Member b ON a.CreateByGUID = b.MemberGUID
+      WHERE   a.QuestionGUID = '{0}' 
+      ]]>
+    </sql>
+
+    <!--获取客服列表-->
+    <sql id="GetKfGrid">
+      <![CDATA[ 
+      SELECT    ReplyGUID ,
+                CreateBy ,
+                CreateByGUID ,
+                CONVERT(VARCHAR(16), CreateDate, 120) CreateDate ,
+                Content ,
+                Role  
+      FROM      c_Reply  
+      WHERE     QuestionGUID = '{0}' AND Role <> '回复人'
+      ORDER BY  CreateDate  
+      ]]>
+    </sql>
+
+    <!--获取回复列表-->
+    <sql id="GetReplyGrid">
+      <![CDATA[ 
+      SELECT    a.ReplyGUID ,
+                a.CreateBy ,
+                a.CreateByGUID ,
+                CONVERT(VARCHAR(16), a.CreateDate, 120) CreateDate ,
+                a.Content ,
+                a.Role ,
+                ROW_NUMBER() OVER ( ORDER BY b.Up DESC ) AS ROW ,
+                ISNULL(b.Up, 0) AS Up ,
+                ISNULL(b.Down, 0) AS Down ,
+                CASE WHEN ISNULL(b.ClickNum, 0) = 0 THEN 1
+                     ELSE 0
+                END AS IsAbleClick ,
+                c.headimgurl
+      FROM      c_Reply a
+                LEFT JOIN ( SELECT  a.ReplyGUID ,
+                                    SUM(CASE WHEN Type = '顶' THEN 1
+                                             ELSE 0
+                                        END) AS Up ,
+                                    SUM(CASE WHEN Type = '顶' THEN 0
+                                             ELSE 1
+                                        END) AS Down ,
+                                    SUM(CASE WHEN a.CreateByGUID = '{1}'
+                                             THEN 1
+                                             ELSE 0
+                                        END) AS ClickNum
+                            FROM    dbo.c_ClickLog a
+                                    INNER JOIN c_Reply b ON b.ReplyGUID = a.ReplyGUID
+                            WHERE   b.QuestionGUID = '{0}'
+                            GROUP BY a.ReplyGUID
+                          ) b ON b.ReplyGUID = a.ReplyGUID 
+                LEFT JOIN dbo.c_Member c ON a.CreateByGUID = c.MemberGUID
+      WHERE     QuestionGUID = '{0}' AND Role = '回复人'
+      ORDER BY  b.Up ,
+                a.CreateDate DESC 
+      ]]>
+    </sql>
+
+    <!--点赞-->
+    <sql id="SaveReplyClick">
+      <![CDATA[  
+      INSERT  INTO dbo.c_ClickLog
+              ( RowGUID ,
+                ReplyGUID ,
+                ProjGUID ,
+                BUGUID ,
+                CreateBy ,
+                CreateDate ,
+                CreateByGUID ,
+                Type
+              )
+              SELECT  NEWID() ,
+                      '{1}' ,
+                      ProjGUID ,
+                      BUGUID , 
+                      MemberName ,
+                      GETDATE() ,
+                      MemberGUID ,
+                      CASE WHEN '{2}'='1' THEN '顶' ELSE '踩' END 
+              FROM    dbo.c_Member
+              WHERE   MemberGUID = '{0}'
+      ]]>
+    </sql>
+
+    <!--回复-->
+    <sql id="SaveReply">
+      <![CDATA[  
+      INSERT  INTO dbo.c_Reply
+              ( ReplyGUID ,
+                QuestionGUID ,
+                ProjGUID ,
+                BUGUID ,
+                Content ,
+                CreateBy ,
+                CreateDate ,
+                CreateByGUID ,
+                Role
+              )
+              SELECT  NEWID() ,
+                      '{1}' ,
+                      a.ProjGUID ,
+                      a.BUGUID ,
+                      '{2}' ,
+                      a.MemberName ,
+                      GETDATE() ,
+                      a.MemberGUID ,
+                      CASE WHEN a.MemberGUID = b.CreateByGUID THEN '提问人'
+                           ELSE '回复人'
+                      END
+              FROM    dbo.c_Member a
+                      INNER JOIN dbo.c_Question b ON b.QuestionGUID = '{1}'
+              WHERE   MemberGUID = '{0}'
+      ]]>
+    </sql>
+
+    <!--获取兑换商品列表-->
+    <sql id="GetMerchandiseGrid">
+      <![CDATA[ 
+      SELECT    MerchandiseGUID ,
+                MerchandiseName ,
+                MerchandiseCode ,
+                MerchandiseType ,
+                StockNum ,
+                PurchaseNum ,
+                ConvertNum ,
+                Score , 
+                c.LevelName AS Level ,
+                Location + '/' + FileName AS Url 
+      FROM      c_Merchandise a
+                LEFT JOIN dbo.c_Documents b ON a.MerchandiseGUID = b.RelationGUID
+                LEFT JOIN dbo.c_MemberLevel c ON a.Level = c.Level
+                                              AND a.BUGUID = c.BUGUID
+      WHERE     ProjGUID = '{0}' 
+      ORDER BY  MerchandiseCode  
+      ]]>
+    </sql>
+
+    <!--获取兑换商品详情-->
+    <sql id="GetMerchandiseInfo">
+      <![CDATA[ 
+      SELECT  a.MerchandiseGUID , 
+              a.MerchandiseName ,
+              a.MerchandiseCode ,
+              a.MerchandiseType ,
+              a.Status ,
+              a.Score ,
+              c.Level AS Level ,
+              c.LevelName AS LevelName ,
+              a.StockNum ,
+              a.PurchaseNum , 
+              a.ConvertNum ,
+              ISNULL(a.ConvertProcess,'') AS ConvertProcess ,
+              ISNULL(a.ConvertRemark,'') AS ConvertRemark ,
+              ISNULL(a.ConvertMatters,'') AS ConvertMatters ,
+              a.CreateBy , 
+              CONVERT(VARCHAR(10), a.CreateDate, 120) AS CreateDate ,
+              Location + '/' + FileName AS Url 
+      FROM    dbo.c_Merchandise a
+              LEFT JOIN dbo.c_Documents b ON a.MerchandiseGUID = b.RelationGUID
+              LEFT JOIN dbo.c_MemberLevel c ON a.Level = c.Level
+                                              AND a.BUGUID = c.BUGUID
+      WHERE   MerchandiseGUID = '{0}'  
+      ]]>
+    </sql>
+
+    <!--获取底价抢车活动列表-->
+    <sql id="GetBuyActivityGrid">
+      <![CDATA[ 
+      SELECT  BuyActivityGUID ,
+              BuyActivityCode ,
+              BuyActivityTheme ,
+              BuyActivityStatus ,
+              YearMonth ,
+              CarBrand ,
+              CarModel ,
+              CONVERT(VARCHAR(50), Price, 1) AS Price ,
+              CONVERT(VARCHAR(10), ReleaseResultDate, 120) AS ReleaseResultDate , 
+              SelectCount ,
+              Remark  
+      FROM    dbo.c_BuyActivity  
+      WHERE   ProjGUID = '{0}' AND BuyActivityStatus <> '待上线'
+      ORDER BY YearMonth DESC
+      ]]>
+    </sql>
+
+    <!--获取底价抢车活动信息-->
+    <sql id="GetBuyActivityInfo">
+      <![CDATA[ 
+      SELECT  a.BuyActivityGUID ,
+              a.BuyActivityCode ,
+              a.BuyActivityTheme ,
+              a.BuyActivityStatus ,
+              a.YearMonth ,
+              CarBrand ,
+              CarModel ,
+              CONVERT(VARCHAR(50), Price, 1) AS Price ,
+              CONVERT(VARCHAR(30), ReleaseResultDate, 120) AS ReleaseResultDate , 
+              ISNULL(SelectCount,0) AS SelectCount ,
+              Remark ,
+              ( SELECT    COUNT(*)
+                FROM      c_BuyActivity2Member
+                WHERE     BuyActivityGUID = '{0}'
+              ) AS MemberNum ,
+              ( SELECT    COUNT(*)
+                FROM      c_BuyPurpose
+                WHERE     BuyActivityGUID = '{0}'
+              ) AS PurposeNum ,
+              CASE WHEN b.PurposeGUID IS NULL THEN 1
+                   ELSE 0
+              END AS IsAblePurPose ,
+              CASE WHEN c.MemberGUID IS NULL THEN 1
+                   ELSE 0
+              END AS IsAbleHandIn
+      FROM    dbo.c_BuyActivity a
+              LEFT JOIN dbo.c_BuyPurpose b ON b.BuyActivityGUID = a.BuyActivityGUID 
+                                              AND b.MemberGUID = '{1}'
+              LEFT JOIN dbo.c_BuyActivity2Member c ON c.BuyActivityGUID = a.BuyActivityGUID
+                                                      AND c.MemberGUID = '{1}'
+      WHERE   a.BuyActivityGUID = '{0}' 
+      ]]>
+    </sql>
+
+    <!--本期愿望列表-->
+    <sql id="GetBuyPurposeGrid">
+      <![CDATA[ 
+      SELECT    PurposeGUID ,
+                b.MemberName ,
+                CONVERT(VARCHAR(10), a.CreateDate, 120) CreateDate ,
+                a.Content,
+                b.headimgurl
+      FROM      c_BuyPurpose a
+                INNER JOIN dbo.c_Member b ON a.MemberGUID = b.MemberGUID
+      WHERE     a.BuyActivityGUID = '{0}' 
+      ORDER BY  CreateDate DESC  
+      ]]>
+    </sql>
+
+    <!--上月中奖用户-->
+    <sql id="GetLastMonthUser">
+      <![CDATA[ 
+      SELECT  a.RowGUID ,
+              c.MemberName ,
+              b.CarInfo
+      FROM    c_BuyActivity2Member a
+              INNER JOIN ( SELECT a.BuyActivityGUID ,
+                                  a.CarBrand + a.CarModel AS CarInfo ,
+                                  ROW_NUMBER() OVER ( ORDER BY a.YearMonth DESC ) AS row
+                           FROM   c_BuyActivity a
+                                  INNER JOIN c_BuyActivity b ON a.ProjGUID = b.ProjGUID
+                                                                AND a.YearMonth < b.YearMonth
+                           WHERE  b.BuyActivityGUID = '{0}'
+                         ) b ON b.BuyActivityGUID = a.BuyActivityGUID
+                                AND b.row = 1
+              INNER JOIN dbo.c_Member c ON a.MemberGUID = c.MemberGUID 
+      WHERE   a.IsSelect=1
+      ORDER BY c.MemberName   
+      ]]>
+    </sql>
+
+    <!--本月中奖用户-->
+    <sql id="GetCurMonthUser">
+      <![CDATA[ 
+      SELECT  RowGUID ,
+              c.MemberName ,
+              b.CarBrand + b.CarModel AS CarInfo,
+              c.headimgurl
+      FROM    c_BuyActivity2Member a
+              INNER JOIN dbo.c_BuyActivity b ON b.BuyActivityGUID = a.BuyActivityGUID
+              INNER JOIN dbo.c_Member c ON a.MemberGUID = c.MemberGUID
+      WHERE   a.BuyActivityGUID = '{0}' AND a.IsSelect=1
+      ORDER BY c.MemberName  
+      ]]>
+    </sql>
+
+    <!--提交抢车愿望-->
+    <sql id="SavePurpose">
+      <![CDATA[ 
+      INSERT  INTO dbo.c_BuyPurpose
+              ( PurposeGUID ,
+                BuyActivityGUID ,
+                ProjGUID ,
+                BUGUID ,
+                YearMonth ,
+                MemberGUID ,
+                Content ,
+                CreateDate
+              )
+              SELECT  NEWID() ,
+                      BuyActivityGUID ,
+                      ProjGUID ,
+                      BUGUID ,
+                      YearMonth ,
+                      '{2}' ,
+                      '{1}' ,
+                      GETDATE()
+              FROM    dbo.c_BuyActivity
+              WHERE   BuyActivityGUID = '{0}'  
+      ]]>
+    </sql>
+
+    <!--参与抢车活动-->
+    <sql id="SaveActivityMember">
+      <![CDATA[         
+      INSERT  INTO dbo.c_BuyActivity2Member
+              ( RowGUID ,
+                BuyActivityGUID ,
+                MemberGUID ,
+                ProjGUID ,
+                BUGUID ,
+                YearMonth ,
+                CreateDate ,
+                IsSelect
+              )
+              SELECT  NEWID() ,
+                      BuyActivityGUID ,
+                      '{1}' ,
+                      ProjGUID ,
+                      BUGUID ,
+                      YearMonth ,
+                      GETDATE() ,
+                      0
+              FROM    dbo.c_BuyActivity
+              WHERE   BuyActivityGUID = '{0}'
+      ]]>
+    </sql>
+
+  </sqlstrings>
+</xml>

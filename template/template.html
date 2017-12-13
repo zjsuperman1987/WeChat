@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html style="font-size: 100px;">
+<head>
+    <!-- meta使用viewport以确保页面可自由缩放 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- 引入 jQuery Mobile 样式 -->
+    <link type="text/css" rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <!-- 引入 底层css 样式 -->
+    <link type="text/css" rel="stylesheet" href="/Mobile/WeChat/_css/common.css" />
+    <link type="text/css" rel="stylesheet" href="/Mobile/WeChat/_css/layer.css" /> 
+    <!-- 引入 jQuery Mobile 库 -->
+    <script type="text/javascript" language="javascript" src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!-- 引入 底层Js 库-->
+    <script type="text/javascript" language="javascript" src="/Mobile/WeChat/_js/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" src="/Mobile/WeChat/_js/layer.js"></script>
+    <script type="text/javascript" language="javascript" src="/Mobile/WeChat/_js/common.js"></script>
+    <title>样例模板</title>
+</head>
+<body>
+    <div data-role="page" data-role="none">
+        <div data-role="main">
+            <div class="menu bb">
+                <div class="menu_item">
+                    <img class="menu_item_img" src="/Mobile/WeChat/_image/i_integral.png">
+                    <div class="menu_item_text">
+                        资源查询</div>
+                </div>
+                <div class="menu_item">
+                    <img class="menu_item_img" src="/Mobile/WeChat/_image/i_integral.png">
+                    <div class="menu_item_text">
+                        资源查询</div>
+                </div>
+                <div class="menu_item">
+                    <img class="menu_item_img" src="/Mobile/WeChat/_image/i_integral.png">
+                    <div class="menu_item_text">
+                        资源查询</div>
+                </div>
+                <div class="menu_item">
+                    <img class="menu_item_img" src="/Mobile/WeChat/_image/i_integral.png">
+                    <div class="menu_item_text">
+                        资源查询</div>
+                </div>
+            </div>
+            <div class="menu bb">
+                <div class="menu_item">
+                    <img class="menu_item_img" src="/Mobile/WeChat/_image/i_integral.png">
+                    <div class="menu_item_text">
+                        资源查询</div>
+                </div>
+                <div class="menu_item">
+                    <img class="menu_item_img" src="/Mobile/WeChat/_image/i_integral.png">
+                    <div class="menu_item_text">
+                        资源查询</div>
+                </div> 
+                <div class="menu_item">
+                    <img class="menu_item_img" src="/Mobile/WeChat/_image/i_integral.png">
+                    <div class="menu_item_text">
+                        资源查询</div>
+                </div> 
+                <div class="menu_item">
+                    <img class="menu_item_img" src="/Mobile/WeChat/_image/i_integral.png">
+                    <div class="menu_item_text">
+                        资源查询</div>
+                </div>  
+            </div>
+            <div class="grid_row bb">
+                <div class="grid_row_tr f12">
+                    <div class="fl">
+                        编号：DD20171116003</div>
+                    <div class="fr c-primary">
+                        已接单</div>
+                </div>
+                <div class="grid_row_tr f12">
+                    <div class="fl">
+                        类型：汽车保险</div>
+                    <div class="fr c-primary">
+                        ¥ 1.00</div>
+                </div>
+                <div class="grid_row_tr f12">
+                    <div class="fl">
+                        日期：2017-11-16 16:31</div>
+                </div>
+                <div class="grid_row_tr f12">
+                    <div class="fl">
+                        接单人：测试用户1</div>
+                    <div class="fr" data-id="0d69164f-6149-4a06-865f-0cd2c5ff91a7" data-type="汽车保险">
+                        查看详情</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" language="javascript">
+    window.onload = function () {
+
+    }
+    //登录
+    var Login = (function () {
+
+        return {
+            Login: function () {
+                window.location.href = "/WeChat/Member/mainpage.html?voucher=" + escape(voucher);
+
+            },
+            //绑定手机号
+            BindMobilePhone: function () {
+
+            },
+            test: function () {
+                pop.notice("提交成功", 1);
+            }
+        }
+    })();
+
+</script>

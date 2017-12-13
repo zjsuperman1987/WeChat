@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html style="font-size: 100px;">
+<head>
+    <!-- meta使用viewport以确保页面可自由缩放 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- 引入 底层css 样式 -->
+    <link type="text/css" rel="stylesheet" href="/Mobile/WeChat/_css/common.css" />
+    <link type="text/css" rel="stylesheet" href="/Mobile/WeChat/_css/layer.css" />
+    <!-- 引入 底层Js 库-->
+    <script type="text/javascript" language="javascript" src="/Mobile/WeChat/_js/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" src="/Mobile/WeChat/_js/layer.js"></script>
+    <script type="text/javascript" language="javascript" src="/Mobile/WeChat/_js/common.js"></script>
+    <title>光之际软件有限公司</title>
+</head>
+<body>
+    <div>
+        <div>
+            <div class="bg-proj">
+                当前项目：<span id="ProjName">测试项目</span> <span onclick="selProjChange(true)" class="change-proj">
+                    [切换]</span>
+            </div>
+            <div class="banner">
+                <img id="photo" src="/Mobile/WeChat/_image/梅花.jpg" alt="" width="20%" />
+                <p>
+                    谢辉棚</p>
+            </div>
+            <div class="notice">
+               <!-- <img src="/Mobile/WeChat/_image/remind.png" alt="" width="25" height="25" />&nbsp;&nbsp;欢迎使用光之际移动办公系统-->
+                <!--  <i class="icon iconfont" style="background:(/Mobile/WeChat/_image/remind.png) no-repeat;"></i>&nbsp;&nbsp;欢迎使用光之际移动办公系统-->
+            </div>
+            <!-- 商业用户菜单 -->
+            <div>
+                <div class="menu bb">
+                    <div class="menu_item">
+                        <img class="menu_item_img" src="/Mobile/WeChat/_image/资源查询.png">
+                        <div class="menu_item_text">
+                            资源查询</div>
+                    </div>
+                    <div class="menu_item">
+                        <img class="menu_item_img" src="/Mobile/WeChat/_image/进程办理.png">
+                        <div class="menu_item_text">
+                            进程办理</div>
+                    </div>
+                    <div class="menu_item">
+                        <img class="menu_item_img" src="/Mobile/WeChat/_image/代办办理.png">
+                        <div class="menu_item_text">
+                            待办办理</div>
+                    </div>
+                </div>
+                <div class="menu bb">
+                    <div class="menu_item">
+                        <img class="menu_item_img" src="/Mobile/WeChat/_image/我的机会.png">
+                        <div class="menu_item_text">
+                            我的机会</div>
+                    </div>
+                    <div class="menu_item">
+                        <img class="menu_item_img" src="/Mobile/WeChat/_image/报事处理.png">
+                        <div>
+                            报事处理</div>
+                    </div>
+                    <div class="menu_item">
+                        <img class="menu_item_img" src="/Mobile/WeChat/_image/品牌客商库.png">
+                        <div class="menu_item_text">
+                            品牌客商库</div>
+                    </div>
+                </div>
+                <div class="menu bb">
+                    <div class="menu_item">
+                        <img class="menu_item_img" src="/Mobile/WeChat/_image/报表查询.png">
+                        <div class="menu_item_text">
+                            报表查询</div>
+                    </div>
+                    <div class="menu_item">
+                        <img class="menu_item_img" src="/Mobile/WeChat/_image/账单提醒.png">
+                        <div class="menu_item_text">
+                            账单提醒</div>
+                    </div>
+                    <div class="menu_item">
+                        <img class="menu_item_img" src="/Mobile/WeChat/_image/招商情况.png">
+                        <div class="menu_item_text">
+                            招商情况</div>
+                    </div>
+                </div>
+                <div class="menu bb">
+                    <div class="menu_item">
+                        <img class="menu_item_img" src="/Mobile/WeChat/_image/收款情况.png">
+                        <div class="menu_item_text">
+                            收款情况</div>
+                    </div>
+                    <div class="menu_item">
+                        <img class="menu_item_img" src="/Mobile/WeChat/_image/收款分析.png">
+                        <div class="menu_item_text">
+                            收款分析</div>
+                    </div>
+                    <div class="menu_item">
+                    </div>
+                </div>
+            </div>
+            <!-- 经营用户菜单 -->
+            <div class="mc" style="display: none">
+                <div class="menu bb">
+                    <div class="menu_item">
+                        <img class="menu_item_img" src="/Mobile/WeChat/_image/i_integral.png">
+                        <div class="menu_item_text">
+                            账单查询</div>
+                    </div>
+                    <div class="menu_item">
+                        <img class="menu_item_img" src="/Mobile/WeChat/_image/i_integral.png">
+                        <div class="menu_item_text">
+                            商家报事</div>
+                    </div>
+                    <div class="menu_item">
+                        <img class="menu_item_img" src="/Mobile/WeChat/_image/i_integral.png">
+                        <div class="menu_item_text">
+                            收缴率分析</div>
+                    </div>
+                </div>
+                <div class="menu bb">
+                    <div class="menu_item">
+                        <img class="menu_item_img" src="/Mobile/WeChat/_image/i_integral.png">
+                        <div class="menu_item_text">
+                            合同信息查询</div>
+                    </div>
+                    <div class="menu_item">
+                    </div>
+                    <div class="menu_item">
+                    </div>
+                </div>
+            </div>
+            <div class="sel-projs" style="display: none">
+                <div class="header">
+                    <span>请选择项目</span> <span class="close" onclick="selProjChange(false)">关闭</span>
+                </div>
+                <!-- <list-tree v-on:childSeled="selProj" v-on:cancel="selProjCancel"  BusinessType="GetProj" pidName="ParentOrgGUID" dataKeyName="Project" idName="OrgGUID" showName="OrgName" :checkSel="checkSel" :checkEnd="checkEnd"></list-tree>-->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" language="javascript">
+    window.onload = function () {
+
+    }
+    //登录
+    var Login = (function () {
+        var openid = "";
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r !== null) {
+                return unescape(r[2]);
+            }
+            return ""; //返回参数值
+        }
+        return {
+            Login: function () {
+                window.location.href = "/WeChat/Member/mainpage.html?voucher=" + escape(voucher);
+
+            },
+            //绑定手机号
+            BindMobilePhone: function () {
+
+            }
+        }
+    })();
+
+</script>
+<style>
+    .content
+    {
+        padding-top: 16px;
+        padding-bottom: 16px;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding: 16px;
+    }
+    
+    .login_input
+    {
+        background-color: #fff;
+        line-height: 40px;
+        height: 40px;
+        margin-top: 10px;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #425679;
+    }
+    .banner
+    {
+        width: 100%;
+        height: 150px;
+        text-align: center;
+        background-color: #47AAE1;
+        padding: 20px 40px;
+    }
+    p
+    {
+        color: #fff;
+    }
+    img
+    {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-bottom: 5px;
+    }
+    button
+    {
+        margin: 10;
+        width: 100%;
+        height: 40px;
+        margin-top: 20px;
+        border-radius: 5px;
+        color: #425679;
+        border: none;
+        background-color: #425679;
+    }
+</style>
