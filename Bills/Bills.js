@@ -57,8 +57,7 @@ window.onload = function () {
 
 
     var date = PubDate.format(new Date, "yyyy-MM-dd");
-    var $bottom = $('<div class="grid_row bb bg_ccc"></div>' +
-           '<div class="grid_row bb">' +
+    var $bottom = $('<div class="grid_row bb" style="position:fixed; bottom:0">' +
             '<div class="grid_row_tr f12">' +
                 '<div class="fl">当前时间 : <span>' + date + '</span></div>' +
                 '<div class="fr">更多</div>' +
