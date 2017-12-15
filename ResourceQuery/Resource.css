@@ -1,0 +1,189 @@
+.menu {
+    height: 0.43rem;
+}
+.menu-flex-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 0.03rem solid #eee;
+}
+.menu-flex-item-controlBorder {
+    border-bottom: 0.03rem solid #00b0ff;
+    color: #00b0ff;
+}
+.grid_row {
+    padding: 0;
+}
+.grid_row_background {
+    background: #00b0ff;
+}
+.buildingWrap {
+    margin-top: 0.1rem;
+    display: block;
+}
+.borderAndPadding {
+    border-bottom: 0.01rem solid #d3d3d3;
+}
+.floorContentWrap {
+    margin-top: 0.1rem;
+    display: none;
+}
+
+/*筛选页面*/
+.fiftrateContentWrap {
+    display: none;
+}
+.fiftrate_flex {
+    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.fiftrateLeft {
+    flex: 1 1 30%;
+    background: rgba(0,0,0,.5);
+}
+.fiftrateRight {
+    flex: 1 1 70%;
+    display: flex;
+    flex-direction: column;
+    padding: 0.05rem 0.1rem 0.05rem 0.1rem;
+    background: white;
+}
+.resourceTopic {
+    text-align: left;
+    padding-bottom: 0.1rem;
+    margin-bottom: 0.1rem;
+    border-bottom: 0.01rem solid #c1c1c1;
+    color: #00b0ff;
+}
+.resourceContent {
+    display: flex;
+    flex-wrap: wrap;
+}
+.resourceStyle {
+    padding: 0.05rem;
+    margin-right: 0.08rem;
+    margin-bottom: 0.08rem;
+    border: 0.01rem solid #cdcdcd;
+    border-radius: 0.05rem;
+    text-align: center;
+    font-size: 12px;
+    color: black;
+}
+.btn_bottom {
+   width: 70%;
+   position: fixed;
+   bottom: 0;
+   background: white
+}
+.btn_bottom > div {
+    float: left;
+    width: 45%;
+    border: 0.01rem solid gray;
+    border-radius: 0.05rem;
+    padding: 0.1rem;
+    text-align: center;
+}
+.btn_bottom > div:nth-child(1) {
+    margin-right: 0.1rem;
+}
+.btn_style {
+    background: #00b0ff;
+    color: white;   
+}
+
+/*楼层细节*/
+.floorsDetails {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    padding: 0.1rem;
+    background: white;
+    font-size: 14px;
+    display: none;
+}
+.floorsDetails_section {
+    width: 100%;
+    height: 1.14rem;
+    border: 0.01rem solid #c1c1c1;
+    border-radius: 0.05rem;
+    margin-bottom: 0.1rem;
+}
+.floorsDetails_section_header {
+    padding: 0.08rem;
+    display: flex; 
+    border-bottom: 0.01rem solid #c1c1c1;
+}
+.floorsDetails_section_header > div {
+    flex: 1;
+}
+.floorsDetails_section_header > div:nth-child(1){
+   color: #23cf3a;
+}
+.floorsDetails_section_header > div:nth-child(2){
+    text-align: center;
+    color: #e98f36;
+}
+.floorsDetails_section_header > div:nth-child(3){
+    text-align: right;
+    color: #db3e1a;
+}
+.floorsDetails_section_content {
+    padding: 0.2rem 0.16rem;
+    display: flex;
+}
+.floorsDetails_section_content>div {
+    flex: 1;
+    position: relative;
+    text-align: center;
+}
+.floorsDetails_section_content>div:nth-child(1) {
+    text-align: left;
+}
+.floorsDetails_section_content>div:after {
+    content: '';
+    height: 50%;
+    width: 0.01rem;
+    position: absolute;
+    right: 0px;
+    top: 25%;
+    background: #c1c1c1;
+}
+/*楼层最终页面*/
+.floorLast {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    padding: 0.1rem;
+    background: #f5f5f6;
+    color: #8D8D8D;
+    display:none;
+}
+.floorLast span {
+    color: black;
+}
+.floorLast .floor_header{
+    padding: 0.1rem 0.08rem 0.1rem 0rem;
+    margin-bottom: 0.1rem;
+    font-size: 20px;
+    color: #00b0ff;
+    border-bottom: 0.01rem solid #eee;
+}
+.floor_content {
+    font-size: 12px;
+    padding-bottom: 0.1rem;
+}
+.floor_content > div {
+    display: inline-block;
+    width: 49%;
+}
+.floorLast_section_Wrap {
+    margin-bottom: 0.1rem;
+    background: white;
+}

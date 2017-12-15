@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body{
+			background-color:#fff;
+			text-align:center;
+			font:40px/1 Arial, Helvetica, sans-serif;
+			color:#333;
+			}
+		h1{
+			color:#222;
+			font-size:2em;
+			text-shadow:0px 3px 0px #999;/*y坐标向下有1像素的偏移量。该效果核心是颜色搭配，文字暗色，阴影亮色。*/}
+		h2{
+			color:#ccc;
+			text-shadow:0 0 10px #333;/*x，y坐标没有偏移量，只有10px的模糊值。*/}
+		h3{
+			font-size:2em;
+			color:#3e3e3e;
+			text-shadow:-1px -1px #000,1px 1px #999;/*第一个是向上向左偏移1px的暗面，第二个是向下向右偏移1px的亮面。亮面和暗面刚好相反。*/
+			}
+		h4{
+			color:#999;
+			font-size:1.5em;
+			text-shadow:2px 0 0 #000,0 2px 0 #000,-2px 0 0 #000,0 -2px 0 #000;}
+		/*x,y坐标正反四个方向都是一样的投影，产生描边效果*/
+		h5{
+			color:#eee;
+			font-size:1.6em;
+			text-shadow:0 0 10px #F90,0 0 30px #F06;/*x,y没有偏移值，颜色有模糊值，可以定义多个效果，多个颜色可以叠加。*/
+			
+			}
+	</style>
+</head>
+<body>
+
+	<h1>MRSZHAO.COM</h1>
+	<h2>css text shadow</h2>
+	<h3>CSS Shadow Effect</h3>
+	<h4>CSS OUTLINE</h4>
+	<h5>CSS light</h5>
+	<p><a href="http://www.mrszhao.com">赵老师前端教学博客</a></p>
+	<style type="text/css">
+		.ts13{
+			color:#0DCFDF;
+			text-shadow: 0 0 2px #686868,0 1px 1px #ddd, 0 2px 1px #d5d5d5, 0 3px 1px #ccc, 0 4px 1px #c5c5c5, 0 5px 1px #c1c1c1, 0 6px 1px #bbb, 0 7px 1px #777,0 8px 3px rgba(100,100,100,0.4),0 9px 5px rgba(100,100,100,0.09),0 10px 7px rgba(100,100,100,0.14),0 11px 9px rgba(100,100,100,0.2),0 12px 11px rgba(100,100,100,0.24),0 13px 15px rgba(100,100,100,0.29);
+			background-color:#fff;
+		}
+	</style>
+	<span class="ts13">楼栋</span>
+
+</body>
+</html>

@@ -16,43 +16,300 @@
     <script type="text/javascript" language="javascript" src="/Mobile/WeChat/_js/layer.js"></script>
     <script type="text/javascript" language="javascript" src="/Mobile/WeChat/_js/common.js"></script>
     <script type="text/javascript" language="javascript" src="./Resource.js"></script>
+    <link rel="stylesheet" type="text/css" href="./Resource.css">
     <title>光之际软件有限公司</title>
 </head>
 <body>
-  <div class="menu">
-      <div class="menu-flex-item menu-flex-item-controlBorder">
-        <i class="fa fa-university"></i>
-        <span>楼栋</span>
+    <div class="menu">
+        <div class="menu-flex-item menu-flex-item-controlBorder">
+            <i class="fa fa-university"></i>
+            <span>楼栋</span>
+        </div>
+        <div class="menu-flex-item">
+            <i class="fa fa-text-height"></i>
+            <span>楼层</span>
+        </div>
+        <div class="menu-flex-item">
+            <i class="fa fa-filter"></i>
+            <span>筛选</span>
+        </div>
     </div>
-      <div class="menu-flex-item">
 
-        <span>楼层</span>
-    </div>
-      <div class="menu-flex-item">
-        <i class="fa fa-filter" aria-hidden="true"></i>
-        <span>筛选</span>
-    </div>
-  </div>
+    <div class="MainWrap">
+    <!-- 主页 -->
+        <div class="grid_row buildingWrap">
+            <div class="grid_row_tr borderAndPadding">
+                <span>1栋</span>
+            </div>
+             <div class="grid_row_tr borderAndPadding">
+                <span>2栋</span>
+            </div>
+        </div>
+        <!-- 楼层页面 -->
+        <div class="grid_row floorContentWrap">
+            <div class="grid_row_tr borderAndPadding">
+                <span>1F</span>
+            </div>
+        </div>
+        <!-- 筛选页面 -->
+        <div class="fiftrateContentWrap">
+          <div class="fiftrate_flex">
+              <div class="fiftrateLeft"></div>
+              <div class="fiftrateRight">
+                  <div class="resourceOfType">
+                      <p class="resourceTopic">资源类型</p>
+                      <div class="resourceContent">
+                          <div class="resourceStyle">主力店</div>
+                          <div class="resourceStyle">专卖店</div>
+                          <div class="resourceStyle">社区配套</div>
+                          <div class="resourceStyle">场地</div>
+                          <div class="resourceStyle">广告位</div>
+                          <div class="resourceStyle">广场</div>
+                          <div class="resourceStyle">库房</div>
+                          <div class="resourceStyle">外展场</div>
+                      </div>
+                  </div>
+                  <div class="leaseState">
+                      <p  class="resourceTopic">租赁状态</p>
+                      <div class="resourceContent">
+                          <div class="resourceStyle">待租</div>
+                          <div class="resourceStyle">洽谈</div>
+                          <div class="resourceStyle">预租</div>
+                          <div class="resourceStyle">签约</div>
+                          <div class="resourceStyle">非租</div>
+                      </div>
+                  </div>
+                  <div class="rentandsendState">
+                      <p  class="resourceTopic">租售状态</p>
+                      <div class="resourceContent">
+                          <div class="resourceStyle">自持</div>
+                          <div class="resourceStyle">待销售</div>
+                          <div class="resourceStyle">代销售转招商</div>
+                          <div class="resourceStyle">已销售-代理</div>
+                          <div class="resourceStyle">已销售-自招</div>
+                          <div class="resourceStyle">已销售-反租</div>
+                      </div>
+                  </div>
+                  <div class="btn_bottom">
+                          <div class="btn_style">取消</div>
+                          <div>查询</div>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+        <!-- 楼层详细 -->
+        <div class="floorsDetails">
+            <div class="floorsDetails_section">
+                <div class="floorsDetails_section_header">
+                    <div><span>01</span></div>
+                    <div><span>签约</span></div>
+                    <div><span>待销售</span></div>
+                </div>
+                <div class="floorsDetails_section_content">
+                    <div>
+                        <p>500㎡</p>
+                        <span>建筑面积</span>
+                    </div>
+                   <div>
+                        <p>480㎡</p>
+                        <span>套内面积</span>
+                    </div>
+                    <div>
+                        <p>500㎡</p>
+                        <span>可租面积</span>
+                    </div>
+                    <div>
+                        <p>主力店</p>
+                        <span>资源类型</span>
+                    </div>
+                </div>
+            </div>
+            <div class="floorsDetails_section">
+                <div class="floorsDetails_section_header">
+                    <div><span>01</span></div>
+                    <div><span>签约</span></div>
+                    <div><span>待销售</span></div>
+                </div>
+                <div class="floorsDetails_section_content">
+                    <div>
+                        <p>500㎡</p>
+                        <span>建筑面积</span>
+                    </div>
+                   <div>
+                        <p>480㎡</p>
+                        <span>套内面积</span>
+                    </div>
+                    <div>
+                        <p>500㎡</p>
+                        <span>可租面积</span>
+                    </div>
+                    <div>
+                        <p>主力店</p>
+                        <span>资源类型</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 楼层最终页面 -->
+        <div class="floorLast">
+            <div class="floorLast_section_Wrap">
+                <p class="floor_header">基本信息</p>
+                <div class="floor_content">
+                    资源编号:
+                    <span>1栋-1F-01</span>
+                </div>
+                <div class="floor_content">
+                    <div>
+                        资源类型:
+                        <span>主力店</span>
+                    </div>
+                    <div>
+                        资源业态:
+                        <span>成熟优雅(女装)</span>
+                    </div>
+                </div>
+                <div class="floor_content">
+                    <div>
+                        生效日期:
+                        <span>2016-02-01</span>
+                    </div>
+                    <div>
+                        失效日期:
+                        <span></span>
+                    </div>
+                </div>
+                <div class="floor_content">
+                    <div>
+                        签约状态:
+                        <span>签约</span>
+                    </div>
+                    <div>
+                        租售状态:
+                        <span>待销售</span>
+                    </div>
+                </div>
+                <div class="floor_content">
+                    <div>
+                        资源建面:
+                        <span>500.00</span>
+                    </div>
+                    <div>
+                        资源套面:
+                        <span>480.00</span>
+                    </div>
+                </div>
+                <div class="floor_content">
+                    可出租面积:
+                    <span>500.00</span>
+                </div>
+            </div>
+
+            <div class="floorLast_section_Wrap">
+                <p class="floor_header" style="color: gold">签约信息</p>
+                <div class="floor_content">
+                    签约客商:
+                    <span>cy</span>
+                </div>
+                <div class="floor_content">
+                    签约乙方:
+                    <span>cy</span>
+                </div>
+                 <div class="floor_content">
+                    签约品牌:
+                    <span>三碗酒</span>
+                </div>
+                 <div class="floor_content">
+                    品牌业态:
+                    <span>餐饮</span>
+                </div>
+                <div class="floor_content">
+                    <div>
+                        租金模式:
+                        <span>固定租金</span>
+                    </div>
+                    <div>
+                        抽成比例:
+                        <span>--</span>
+                    </div>
+                </div>
+                <div class="floor_content">
+                    <div>
+                        约定接铺日期:
+                        <span>2016-02-20</span>
+                    </div>
+                    <div>
+                        实际接铺日期:
+                        <span>2016-02-20</span>
+                    </div>
+                </div>
+                <div class="floor_content">
+                    <div>
+                        约定起租日期:
+                        <span>2016-02-20</span>
+                    </div>
+                    <div>
+                        实际起租日期:
+                        <span>2016-02-20</span>
+                    </div>
+                </div>
+                <div class="floor_content">
+                    <div>
+                        约定收铺日期:
+                        <span>2016-02-20</span>
+                    </div>
+                    <div>
+                        实际收铺日期:
+                        <span>2016-02-20</span>
+                    </div>
+                </div>
+            </div>
+
+             <div class="floorLast_section_Wrap">
+                <p class="floor_header" style="color: green">经营信息</p>
+                <div class="floor_content">
+                    <div>
+                        固定租金单价:
+                        <span></span>
+                    </div>
+                    <div>
+                        物管费月单价:
+                        <span>--</span>
+                    </div>
+                </div>
+                <div class="floor_content">
+                    <div>
+                        上月营业额:
+                        <span></span>
+                    </div>
+                    <div>
+                        上月平坪效:
+                        <span></span>
+                    </div>
+                </div>
+                <div class="floor_content">
+                    <div>
+                        上月租售比:
+                        <span></span>
+                    </div>
+                    <div>
+                        上月预算收入:
+                        <span></span>
+                    </div>
+                </div>
+                <div class="floor_content">s
+                    <div>
+                        上月实际收入:
+                        <span></span>
+                    </div>
+                    <div>
+                        预算达成率:
+                        <span>0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
 </body>
 </html>
-
-<style>
-    .menu {
-        height: 40px;
-    }
-    .menu-flex-item {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-bottom: 3px solid white;
-    }
-    .menu-flex-item-controlBorder {
-        border-bottom: 3px solid #00b0ff;
-        color: #00b0ff;
-    }
-    .menu-flex-item-style {
-        background: rgba(0,0,0,.5);
-        color: white;
-    }
-</style>
