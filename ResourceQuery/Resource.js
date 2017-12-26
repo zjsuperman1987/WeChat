@@ -1,4 +1,3 @@
-$(function(){
 	// ====================================选项卡切换====================================
 	// $('.menu').on('click',function(eve){
 	// 	if(eve.target.nodeName.toLowerCase() == 'span') {
@@ -13,8 +12,13 @@ $(function(){
 	// 	}
 	// });
 
+
+
+
+$(function(){
 	$('.menu .menu-flex-item').on('click', function(event){
 		var index = $(this).index();
+<<<<<<< HEAD
 		if(index == 2) {
 			$(this).addClass("menu-flex-item-controlBorder").siblings().removeClass("menu-flex-item-controlBorder");
 			$('.MainWrap>div').eq(index).css('display', 'block');
@@ -24,7 +28,17 @@ $(function(){
 			$('.MainWrap>div').eq(index).css('display','block').siblings().css('display','none');
 		}
 		
+=======
+		console.log(index);
+		if(index == 2) {
+			$('.fiftrateContentWrap').css('display', 'block');
+		}else{
+			$(this).addClass("menu-flex-item-controlBorder").siblings().removeClass("menu-flex-item-controlBorder");
+			$('.MainWrap>div').eq(index).css('display','block').siblings().css('display','none');
+		}
+>>>>>>> 7ada8ac9a1923c3f7da3216fb5683d488ce26ceb
 	})
+
 	// ==================================楼层点击=====================================
 	$('.buildingWrap>div').on('click',function(){
 		$(this).addClass('grid_row_background').siblings().removeClass('grid_row_background');
@@ -54,9 +68,12 @@ $(function(){
 		$('.fiftrateContentWrap').css('display','none');
 	})
 
-	$('.floorContentWrap .borderAndPadding').on('click',function(){
+	// $('.menu-flex-item:nth-last-child(1)').on('click', function(){
+	// 	alert(1);
+	// 	$('.fiftrateContentWrap').css('display', 'block');
+	// })
+	
 
-	})
 
 	// 楼层跳转
 	$('.floorContentWrap .grid_row_tr').on('click',function() {
@@ -67,8 +84,8 @@ $(function(){
 	// $('.floorsDetails_section').on('click',function(){
 	// 	$('.floorLast').css('display', 'block')
 	// })
-
 	$('.floorsDetails_section').on('click',function(){
+		alert(1);
 		window.location = "./test2.html"
 	})
 })
