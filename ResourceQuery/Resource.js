@@ -14,9 +14,16 @@ $(function(){
 	// });
 
 	$('.menu .menu-flex-item').on('click', function(event){
-		$(this).addClass("menu-flex-item-controlBorder").siblings().removeClass("menu-flex-item-controlBorder");
 		var index = $(this).index();
-		$('.MainWrap>div').eq(index).css('display','block').siblings().css('display','none');
+		if(index == 2) {
+			$(this).addClass("menu-flex-item-controlBorder").siblings().removeClass("menu-flex-item-controlBorder");
+			$('.MainWrap>div').eq(index).css('display', 'block');
+			$('.menu').css('position', 'fixed');
+		}else {
+			$(this).addClass("menu-flex-item-controlBorder").siblings().removeClass("menu-flex-item-controlBorder");
+			$('.MainWrap>div').eq(index).css('display','block').siblings().css('display','none');
+		}
+		
 	})
 	// ==================================楼层点击=====================================
 	$('.buildingWrap>div').on('click',function(){
