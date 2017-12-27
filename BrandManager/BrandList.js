@@ -2,6 +2,8 @@
 window.onload = function () {
     //切换Tab
     InitControl.ChangeTab();
+    // var devicePixelRatio = window.devicePixelRatio;
+    // document.documentElement.setAttribute('data-dpr', devicePixelRatio);
 }
 
 

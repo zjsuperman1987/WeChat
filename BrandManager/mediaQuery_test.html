@@ -1,0 +1,206 @@
+<html style="font-size: 100px;">
+<head>
+    <!-- meta使用viewport以确保页面可自由缩放 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" /> -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- 引入 底层css 样式 -->
+    <link type="text/css" rel="stylesheet" href="/Mobile/WeChat/_css/common.css" />
+    <link type="text/css" rel="stylesheet" href="/Mobile/WeChat/_css/layer.css" />
+    <link type="text/css" rel="stylesheet" href="/Mobile/WeChat/_css/CommonPartially.css" />
+    <!-- 引入 底层Js 库-->
+    <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"></script>
+    <script type="text/javascript" language="javascript" src="/Mobile/WeChat/_js/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" src="/Mobile/WeChat/_js/layer.js"></script>
+    <!-- <script type="text/javascript" language="javascript" src="/Mobile/WeChat/_js/common.js"></script> -->
+    <script type="text/javascript" language="javascript" src="BrandList.js"></script>
+    <title>品牌查询</title>
+</head>
+<body>
+     <!--头部-->
+    <div class="AgentTop bg_ddd" id="AgentTop">
+        <ul class="menu f14" style="background-color: inherit;">
+            <li class="fl tc mt10 bbc">按业态</li>
+            <li class="fl tc mt10">首字母</li>
+            <li class="fl tc mt10">搜索</li>
+        </ul>
+    </div>
+
+    <div id="brand_content">
+        <ul class="brand_content_wrap">
+            <li class="commercial_activities">
+                <ul class="commercial_activities_category">
+                    <li>ALL</li>
+                    <li>星泽汇</li>
+                    <li>潮流时尚</li>
+                    <li>格调餐饮</li>
+                    <li>精致生活</li>
+                    <li>美容护理</li>
+                    <li>狂嗨电玩</li>
+                    <li>前卫数码</li>
+                    <li>文化培训</li>
+                    <li>母婴天地</li>
+                    <li>佳慧超市</li>
+                    <li>国美电器</li>
+                    <li>UME影院</li>
+                </ul>
+                <ul class="list_wrap">
+                    <li>
+                        <div class="list_wrap_left_image">
+                            <img src="images/none_photo.jpg" style="width: 100%;height: 100%;">
+                        </div>
+                        <div class="list_wrap_right_info">
+                            <div class="list_wrap_right_info_header">
+                                <div class="list_wrap_right_info_header_brandName"><span>我的品牌</span></div>
+                                <div class="list_wrap_right_info_header_map"><span>我的地图</span></div>
+                            </div>
+                            <div class="list_wrap_right_info_bottom">
+                                <span>潮流时尚</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="first_font" style="display: none;">
+                <ul class="commercial_activities_category ">
+                    <li>ALL</li>
+                    <li>A</li>
+                    <li>B</li>
+                    <li>C</li>
+                    <li>D</li>
+                    <li>E</li>
+                    <li>F</li>
+                    <li>G</li>
+                    <li>H</li>
+                    <li>I</li>
+                    <li>J</li>
+                    <li>K</li>
+                    <li>L</li>
+                    <li>M</li>
+                    <li>N</li>
+                    <li>O</li>
+                    <li>P</li>
+                    <li>Q</li>
+                    <li>R</li>
+                    <li>S</li>
+                    <li>T</li>
+                    <li>U</li>
+                    <li>V</li>
+                    <li>W</li>
+                    <li>X</li>
+                    <li>Y</li>
+                    <li>Z</li>
+                </ul>
+                <ul class="list_wrap">
+                    <li>
+                        <div class="list_wrap_left_image">
+                            <img src="images/none_photo.jpg" style="width: 100%;height: 100%;">
+                        </div>
+                        <div class="list_wrap_right_info">
+                            <div class="list_wrap_right_info_header">
+                                <div class="list_wrap_right_info_header_brandName"><span>我的品牌</span></div>
+                                <div class="list_wrap_right_info_header_map"><span>我的地图</span></div>
+                            </div>
+                            <div class="list_wrap_right_info_bottom">
+                                <span>潮流时尚</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="search" style="background: black; display: none;"></li>
+        </ul>
+    </div>
+</body>
+</html>
+<style>
+
+   /* @media screen and (min-device-width : 320px){
+
+        body {
+            background: red;
+        }
+
+    }
+*/
+    body {
+        font-size: 14px;
+    }
+    [data-dpr='2'] body {
+        font-size: 28px;
+    }
+    [data-dpr='3'] body {
+        font-size: 42px;
+    }
+
+
+    #brand_content {
+        height: 100%;
+        margin-top: .45rem;
+    }
+    .brand_content_wrap {
+        height: 100%;
+    }
+    .brand_content_wrap > li {
+        height: 100%;
+    }
+    .commercial_activities_category {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        padding: .05rem;
+        padding-top: 0;
+    }
+    .commercial_activities_category li {
+        flex: 0 1 23%;
+        padding: .05rem;
+        margin: .05rem 0 0 1.6%;
+        border: 0.01rem solid #eee;
+        border-radius: .03rem;
+        background: #eee;
+        text-align: center;
+        max-width: 25%;
+    }
+    .list_wrap {
+        padding: 0 .1rem;
+    }
+    .list_wrap>li {
+        width: 100%;
+        height: .5rem;
+        margin-top: .1rem;
+        border: 1px solid #EEE;
+        border-radius: .03rem;
+        padding: .05rem;
+    }
+    .list_wrap_left_image {
+        width:  20%;
+        height: 100%;
+        background: red;
+        float: left;
+    }
+    .list_wrap_right_info {
+        float: left;
+        width: 80%;
+        height: 100%;
+        padding: 0 .05rem;
+    }
+    .list_wrap_right_info_header_brandName {
+        float: left;
+    }
+    .list_wrap_right_info_header_map {
+        float: right;
+    }
+    .list_wrap_right_info_bottom {
+        clear: both;
+    }
+    .first_font .commercial_activities_category>li {
+        flex: 0 1 12%;
+        padding: .05rem;
+        margin: .05rem 0 0 2%;
+        border: 0.01rem solid #eee;
+        border-radius: .03rem;
+        background: #eee;
+        text-align: center;
+    }
+</style>

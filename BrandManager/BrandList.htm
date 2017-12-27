@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <!-- 字体cdn -->
+    <script src="https://use.fontawesome.com/6a63e1740a.js"></script>
     <!-- 引入 底层css 样式 -->
     <link type="text/css" rel="stylesheet" href="/Mobile/WeChat/_css/common.css" />
     <link type="text/css" rel="stylesheet" href="/Mobile/WeChat/_css/layer.css" />
@@ -29,7 +32,7 @@
 
     <div id="brand_content">
 	    <ul class="brand_content_wrap">
-        	<li class="commercial_activities">
+        	<li class="commercial_activities" style="display:none;">
         		<ul class="commercial_activities_category">
         			<li>ALL</li>
         			<li>星泽汇</li>
@@ -109,12 +112,43 @@
         			</li>
         		</ul>
         	</li>
-        	<li class="search" style="background: black; display: none;"></li>
+        	<li class="search" style="display: block;">
+        		<div class="search_background_color">
+        			<div class="search_wrap">
+        				<div class="search_left">
+        					<i class="fa fa-search" aria-hidden="true"></i>
+        				</div>
+        				<div class="search_right">
+        					<span>查询</span>
+        				</div>
+        				<div class="search_middle">
+        					<input type="text" name="search" placeholder="搜索小棉袄">
+        				</div>
+        			</div>
+        		</div>
+        		<ul class="list_wrap">
+	        			<li>
+	        				<div class="list_wrap_left_image">
+	        					<img src="images/none_photo.jpg" style="width: 100%;height: 100%;">
+	        				</div>
+	        				<div class="list_wrap_right_info">
+	        					<div class="list_wrap_right_info_header">
+	        						<div class="list_wrap_right_info_header_brandName"><span>我的品牌</span></div>
+	        						<div class="list_wrap_right_info_header_map"><span>我的地图</span></div>
+	        					</div>
+	        					<div class="list_wrap_right_info_bottom">
+	        						<span>潮流时尚</span>
+	        					</div>
+	        				</div>
+	        			</li>
+    			</ul>
+        	</li>
         </ul>
     </div>
 </body>
 </html>
 <style>
+
     #brand_content {
     	height: 100%;
     	margin-top: .45rem;
@@ -133,9 +167,9 @@
     	padding-top: 0;
     }
     .commercial_activities_category li {
-    	flex: 1 1 auto;
+    	flex: 0 1 23%;
     	padding: .05rem;
-    	margin: .05rem .05rem 0 0;
+    	margin: .05rem 0 0 1.6%;
     	border: 0.01rem solid #eee;
     	border-radius: .03rem;
     	background: #eee;
@@ -174,8 +208,56 @@
     .list_wrap_right_info_bottom {
     	clear: both;
     }
-   /* .first_font .commercial_activities_category>li {
-    	width: 12%;
-    	max-width: 12%;
-    }*/
+    .first_font .commercial_activities_category>li {
+    	flex: 0 1 12%;
+    	padding: .05rem;
+    	margin: .05rem 0 0 2%;
+    	border: 0.01rem solid #eee;
+    	border-radius: .03rem;
+    	background: #eee;
+    	text-align: center;
+    }
+    .search {
+    	width: 100%;
+    	height: 100%;
+    }
+    .search_background_color {
+    	height: .6rem;
+    	background: #EEC591;
+    	overflow: hidden;
+    }
+    .search_wrap {
+    	width: 70%;
+    	height: .3rem;
+    	margin: .15rem auto;
+    	border: 1px solid white;
+    }
+    .search_left {
+    	float: left;
+    	height: .28rem;
+    	line-height: .28rem;
+    	background: white;
+    	/*错误
+			display: flex;
+			justify-content: center;
+			align-items: center;
+    	*/
+    }
+    .search_right {
+    	float: right;
+    	width: .5rem;
+    	height: .28rem;
+    	line-height: .28rem;
+    	text-align: center;
+    	background: #00b0ff;
+    }
+    .search_middle {
+    	overflow: hidden;
+    	height: 100%;
+    }
+   input[name="search"] {
+   		height: 100%;
+   		width: 100%;
+   		padding-left: .05rem;
+   }
 </style>
