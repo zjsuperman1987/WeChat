@@ -18,6 +18,17 @@
 $(function(){
 	$('.menu .menu-flex-item').on('click', function(event){
 		var index = $(this).index();
+<<<<<<< HEAD
+		if(index == 2) {
+			$(this).addClass("menu-flex-item-controlBorder").siblings().removeClass("menu-flex-item-controlBorder");
+			$('.MainWrap>div').eq(index).css('display', 'block');
+			$('.menu').css('position', 'fixed');
+		}else {
+			$(this).addClass("menu-flex-item-controlBorder").siblings().removeClass("menu-flex-item-controlBorder");
+			$('.MainWrap>div').eq(index).css('display','block').siblings().css('display','none');
+		}
+		
+=======
 		console.log(index);
 		if(index == 2) {
 			$('.fiftrateContentWrap').css('display', 'block');
@@ -25,6 +36,7 @@ $(function(){
 			$(this).addClass("menu-flex-item-controlBorder").siblings().removeClass("menu-flex-item-controlBorder");
 			$('.MainWrap>div').eq(index).css('display','block').siblings().css('display','none');
 		}
+>>>>>>> 7ada8ac9a1923c3f7da3216fb5683d488ce26ceb
 	})
 
 	// ==================================楼层点击=====================================
